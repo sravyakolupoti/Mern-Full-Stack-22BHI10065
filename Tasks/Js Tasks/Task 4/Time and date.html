@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Show Date and Time</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 20px;
+    }
+    input, button {
+      margin-top: 10px;
+    }
+    .output {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h3>Select a date:</h3>
+<input type="date" id="dateInput"><br><br>
+
+<button onclick="showDate()">Show Date</button>
+<div class="output" id="dateOutput"></div><br>
+
+<button onclick="showTime()">Show Time</button>
+<div class="output" id="timeOutput"></div>
+
+<script>
+  function showDate() {
+    const input = document.getElementById("dateInput").value;
+    if (!input) {
+      document.getElementById("dateOutput").textContent = "Please select a date.";
+      return;
+    }
+
+    const date = new Date(input);
+    const day = date.getDate();
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+
+    const formatted = `${day}/${month}/${year}`;
+    document.getElementById("dateOutput").textContent = formatted;
+  }
+
+  function showTime() {
+    const input = document.getElementById("dateInput").value;
+    if (!input) {
+      document.getElementById("timeOutput").textContent = "Please select a date.";
+      return;
+    }
+
+    const date = new Date(input);
+    const fullTime = date.toString();
+    document.getElementById("timeOutput").textContent = fullTime;
+  }
+</script>
+
+</body>
+</html>

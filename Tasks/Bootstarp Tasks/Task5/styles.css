@@ -1,0 +1,28 @@
+body {
+    background-color: #f7f7f7;
+  }
+  
+  .form-control.is-invalid,
+  .form-select.is-invalid {
+    border-color: #dc3545;
+    background-color: #f8d7da;
+  }
+  
+  .input-group-text {
+    background-color: #fff;
+    border-right: none;
+  }
+  
+  .input-group .form-control {
+    border-left: none;
+  }
+  
+  .invalid-feedback {
+    color: #dc3545;
+  }
+  
+  button.btn-warning {
+    background-color: #f8b739;
+    border: none;
+  }
+  

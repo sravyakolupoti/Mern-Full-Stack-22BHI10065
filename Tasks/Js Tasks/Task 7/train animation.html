@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Train Animation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    #train {
+      position: relative;
+      left: 0;
+      width: 250px;
+      transition: left 0.1s;
+    }
+
+    h2 {
+      color: darkblue;
+      margin-top: 20px;
+    }
+
+    .buttons {
+      margin-top: 15px;
+    }
+
+    button {
+      padding: 8px 16px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <img id="train" src="https://thumbs.dreamstime.com/b/subway-train-d-side-subway-train-retro-style-side-view-isolated-white-d-illustration-130554838.jpg" alt="train">
+
+  <h2>Click the following buttons to handle animation</h2>
+
+  <div class="buttons">
+    <button onclick="startTrain()">Start</button>
+    <button onclick="stopTrain()">Stop</button>
+  </div>
+</div>
+
+<script>
+  let train = document.getElementById("train");
+  let position = 0;
+  let interval;
+
+  function moveTrain() {
+    if (position < window.innerWidth - train.offsetWidth) {
+      position += 5;
+      train.style.left = position + "px";
+    } else {
+      position = 0;
+    }
+  }
+
+  function startTrain() {
+    stopTrain(); // avoid multiple intervals
+    interval = setInterval(moveTrain, 50);
+  }
+
+  function stopTrain() {
+    clearInterval(interval);
+  }
+</script>
+
+</body>
+</html>

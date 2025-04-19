@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+  <style>
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+    .invalid {
+      border: 2px solid red;
+    }
+    input, textarea {
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h3>Contact Form</h3>
+
+<form id="contactForm" onsubmit="return validateForm();">
+  <label>Name:</label>
+  <input type="text" id="name">
+  <span id="nameError" class="error"></span>
+
+  <label>Email:</label>
+  <input type="text" id="email">
+  <span id="emailError" class="error"></span>
+
+  <label>Website:</label>
+  <input type="text" id="website">
+  <span id="websiteError" class="error"></span>
+
+  <label>Message:</label>
+  <textarea id="message" rows="4" cols="30"></textarea>
+  <span id="messageError" class="error"></span>
+
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+  function validateForm() {
+    let isValid = true;
+
+    // Reset errors
+    document.querySelectorAll('.error').forEach(el => el.textContent = '');
+    document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('invalid'));
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const website = document.getElementById('website').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/i;
+    const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/\S*)?$/i;
+
+    if (!name) {
+      document.getElementById('nameError').textContent = "This field is required";
+      document.getElementById('name').classList.add('invalid');
+      isValid = false;
+    }
+
+    if (!email || !emailPattern.test(email)) {
+      document.getElementById('emailError').textContent = "A valid email address is required";
+      document.getElementById('email').classList.add('invalid');
+      isValid = false;
+    }
+
+    if (!website || !urlPattern.test(website)) {
+      document.getElementById('websiteError').textContent = "A valid url is required";
+      document.getElementById('website').classList.add('invalid');
+      isValid = false;
+    }
+
+    if (!message) {
+      document.getElementById('messageError').textContent = "This field is required";
+      document.getElementById('message').classList.add('invalid');
+      isValid = false;
+    }
+
+    return isValid;
+  }
+</script>
+
+</body>
+</html>

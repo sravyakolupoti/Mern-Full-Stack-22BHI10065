@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+  <style>
+    /* Background and overall body style */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #dfe9f3, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Form container */
+    form {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 450px;
+      animation: slideIn 1.2s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #2980b9;
+      box-shadow: 0 0 8px rgba(41, 128, 185, 0.2);
+      outline: none;
+    }
+
+    .status {
+      font-size: 12px;
+      color: red;
+      margin-top: 3px;
+      transition: opacity 0.3s;
+    }
+
+    .gender, .languages {
+      margin-top: 15px;
+    }
+
+    .submit-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #c0392b;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #2980b9;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <form id="regForm" onsubmit="return validateForm()">
+    <h2>Registration Form</h2>
+
+    <label>First Name:
+      <input type="text" id="fname" oninput="validateField(this)">
+      <span class="status" id="fnameStatus">POOR</span>
+    </label>
+
+    <label>Last Name:
+      <input type="text" id="lname" oninput="validateField(this)">
+      <span class="status" id="lnameStatus">POOR</span>
+    </label>
+
+    <label>Email:
+      <input type="email" id="email" oninput="validateEmail()">
+      <span class="status" id="emailStatus">POOR</span>
+    </label>
+
+    <label>Password:
+      <input type="password" id="password" oninput="validatePassword()">
+      <span class="status" id="passwordStatus">POOR</span>
+    </label>
+
+    <label>Re-enter Password:
+      <input type="password" id="confirmPassword" oninput="validateConfirmPassword()">
+      <span class="status" id="confirmPasswordStatus">POOR OR MISMATCH</span>
+    </label>
+
+    <div class="gender">
+      <label>Gender:</label>
+      <input type="radio" name="gender"> Male
+      <input type="radio" name="gender"> Female
+    </div>
+
+    <label>Age:
+      <input type="text" id="age" oninput="validateNumber(this)">
+      <span class="status" id="ageStatus">POOR</span>
+    </label>
+
+    <label>Phone Number:
+      <input type="text" id="phone" oninput="validatePhone()">
+      <span class="status" id="phoneStatus">POOR</span>
+    </label>
+
+    <label>Address:
+      <textarea id="address" oninput="validateField(this)"></textarea>
+      <span class="status" id="addressStatus">POOR</span>
+    </label>
+
+    <label>State:
+      <input type="text" id="state" oninput="validateField(this)">
+      <span class="status" id="stateStatus">POOR</span>
+    </label>
+
+    <label>Country:
+      <select>
+        <option>Choose your country</option>
+        <option>India</option>
+        <option>USA</option>
+        <option>UK</option>
+      </select>
+    </label>
+
+    <div class="languages">
+      <label>Languages known:</label>
+      <input type="checkbox"> English
+      <input type="checkbox"> Kannada
+      <input type="checkbox"> Hindi
+      <input type="checkbox"> Telugu
+    </div>
+
+    <label>
+      <input type="checkbox" required> I hereby declare that all the given details are true
+    </label>
+
+    <a href="#">Log in to Ethnus website</a>
+
+    <button class="submit-btn">REGISTER</button>
+  </form>
+
+  <script>
+    function validateField(input) {
+      const statusId = input.id + "Status";
+      document.getElementById(statusId).textContent = input.value.trim() ? "" : "POOR";
+    }
+
+    function validateEmail() {
+      const email = document.getElementById("email").value;
+      const status = document.getElementById("emailStatus");
+      const regex = /^[^@]+@[^@]+\.[a-z]{2,}$/i;
+      status.textContent = regex.test(email) ? "" : "POOR";
+    }
+
+    function validatePassword() {
+      const pass = document.getElementById("password").value;
+      const status = document.getElementById("passwordStatus");
+      status.textContent = pass.length >= 6 ? "" : "POOR";
+    }
+
+    function validateConfirmPassword() {
+      const pass = document.getElementById("password").value;
+      const confirm = document.getElementById("confirmPassword").value;
+      const status = document.getElementById("confirmPasswordStatus");
+      status.textContent = pass === confirm && confirm ? "" : "POOR OR MISMATCH";
+    }
+
+    function validateNumber(input) {
+      const statusId = input.id + "Status";
+      const val = input.value.trim();
+      document.getElementById(statusId).textContent = /^\d+$/.test(val) ? "" : "POOR";
+    }
+
+    function validatePhone() {
+      const phone = document.getElementById("phone").value;
+      const status = document.getElementById("phoneStatus");
+      status.textContent = /^\d{10}$/.test(phone) ? "" : "POOR";
+    }
+
+    function validateForm() {
+      alert("Form submitted (if all fields are valid). You can extend this to a backend!");
+      return false;
+    }
+  </script>
+</body>
+</html>

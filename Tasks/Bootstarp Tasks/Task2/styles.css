@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .top-bar {
+    background-color: #f7b731;
+    font-size: 0.9rem;
+  }
+  
+  .navbar {
+    background-color: #031b4e;
+  }
+  
+  .navbar .nav-link {
+    color: white !important;
+    font-weight: 500;
+  }
+  
+  .btn-quote {
+    background-color: #f7b731;
+    border: none;
+    color: #000;
+    padding: 8px 20px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .btn-quote:hover {
+    background-color: #e6a515;
+    color: #fff;
+  }
+  
+  .hero-section {
+    background: url('https://content.presentermedia.com/files/clipart/00031000/31133/construction_site_background_800_wht.jpg') center/cover no-repeat;
+    height: 600px;
+    color: white;
+    position: relative;
+  }
+  
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 50px;
+  }
+  
+  .feature-box {
+    background-color: #031b4e;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .feature-box i {
+    font-size: 2rem;
+    color: #f7b731;
+  }
+  
